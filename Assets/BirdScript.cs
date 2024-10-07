@@ -35,7 +35,7 @@ public class birdScript : MonoBehaviour
             birdIsAlive=false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive == true && coordenadasY<0.95 && logica.getPausedGame()==false)
+        if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive == true && coordenadasY<0.8 && logica.getPausedGame()==false)
         {
             if (logica.getGameBegin() == true)
             {
