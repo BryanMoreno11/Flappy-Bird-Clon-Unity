@@ -50,6 +50,7 @@ MonoBehaviour:
   incrementoVelocidad: 2.5
   bottomPipe: {fileID: 1775384782638643903}
   topPipe: {fileID: 2961798313279201189}
+  limiteSumaPipe: 7.5
 --- !u!1 &1775384782638643903
 GameObject:
   m_ObjectHideFlags: 0

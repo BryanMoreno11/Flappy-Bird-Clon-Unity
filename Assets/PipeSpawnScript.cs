@@ -31,18 +31,9 @@ public class PipeSpawnScript : MonoBehaviour
 
     }
 
-    public  void spawnearPipes()
+    public void spawnearPipes()
     {
-
-        float alturaMinima= transform.position.y-alturaPipe;
-        float alturaMaxima= transform.position.y+alturaPipe;
-        float posicionRandom = Random.Range(alturaMinima, alturaMaxima);
-        if ((posicionRandom >= 4 && posicionRandom < 6) || (posicionRandom <= 0 && posicionRandom <= -3 && posicionRandom > -6))
-        {
-            posicionRandom = 1;
-        }
-
-        Instantiate(pipe, new Vector3(transform.position.x,posicionRandom, 0), transform.rotation);
+        Instantiate(pipe, new Vector3(transform.position.x, 0, 0), transform.rotation);
     }
 
     public void setTiempoSpawn(float tiempo)

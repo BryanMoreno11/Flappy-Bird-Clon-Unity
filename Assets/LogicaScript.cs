@@ -12,15 +12,15 @@ public class LogicaScript : MonoBehaviour
     public Text puntuacionTexto;
     public GameObject instruccion;
     public GameObject gameOverScreen;
-    public int puntajeIncremental = 10;
-    public int incremento=10;
-    public int limiteIncremento = 40;
+    public int puntajeIncremental = 20;
+    public int incremento=20;
+    public int limiteIncremento = 20*4;
     public PipeMovement pipeMovement;
     public PipeSpawnScript spawn;
     public AudioSource scoreSound;
     public AudioSource gameSong;
-    public static bool gameBegin=true;
     public GameObject panelPausa;
+    public static bool gameBegin = true;
     public bool gameFinish = false;
     public bool pausedGame=false;
 
