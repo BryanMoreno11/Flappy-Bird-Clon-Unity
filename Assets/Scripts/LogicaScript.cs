@@ -5,11 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static Unity.Collections.AllocatorManager;
 
-public class LogicaScript : MonoBehaviour
+public class LogicaScript : MonoBehaviour, IDataPersistence
 {
     //Variables
     public int puntuacion;
     public Text puntuacionTexto;
+    public Text puntuacionAlta;
     public GameObject instruccion;
     public GameObject gameOverScreen;
     public int puntajeIncremental = 20;
@@ -26,6 +27,7 @@ public class LogicaScript : MonoBehaviour
 
     private void Start()
     {
+        DataPersistenceManager.instance.loadGame();
         pipeMovement = GameObject.FindGameObjectWithTag("pipeMovement").GetComponent<PipeMovement>();
         spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<PipeSpawnScript>();
         gameSong.Play();
@@ -73,6 +75,7 @@ public class LogicaScript : MonoBehaviour
         gameOverScreen.SetActive(true);
         float velocidadBase= pipeMovement.getVelocidadBase();
         pipeMovement.setVelocidad( velocidadBase );
+        DataPersistenceManager.instance.saveGame();
     }
 
     public void toggleInstrucion(bool orden)
@@ -113,5 +116,21 @@ public class LogicaScript : MonoBehaviour
     public bool getPausedGame()
     {
         return pausedGame;
+    }
+
+    public void saveData(ref GameData data)
+    {
+        if (puntuacion > data.puntaje)
+        {
+            data.puntaje = puntuacion;
+        }
+    }
+
+    public void loadData( GameData data)
+    {
+        if (data.puntaje > 0)
+        {
+            puntuacionAlta.text="HS: "+data.puntaje;
+        }
     }
 }
