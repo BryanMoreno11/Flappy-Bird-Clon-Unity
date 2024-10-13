@@ -19,7 +19,10 @@ public class LogicaScript : MonoBehaviour, IDataPersistence
     public PipeMovement pipeMovement;
     public PipeSpawnScript spawn;
     public AudioSource scoreSound;
-    public AudioSource gameSong;
+    [SerializeField]public AudioSource gameSong;
+    [SerializeField] private Slider musicSlider;
+
+
     public GameObject panelPausa;
     public static bool gameBegin = true;
     public bool gameFinish = false;
@@ -31,6 +34,15 @@ public class LogicaScript : MonoBehaviour, IDataPersistence
         pipeMovement = GameObject.FindGameObjectWithTag("pipeMovement").GetComponent<PipeMovement>();
         spawn = GameObject.FindGameObjectWithTag("Spawn").GetComponent<PipeSpawnScript>();
         gameSong.Play();
+
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            loadVolume();
+        }
+        else
+        {
+            setMusicVolume();
+        }
 
     }
 
@@ -132,5 +144,20 @@ public class LogicaScript : MonoBehaviour, IDataPersistence
         {
             puntuacionAlta.text="HS: "+data.puntaje;
         }
+    }
+
+    public void setMusicVolume()
+    {
+        float volumen= musicSlider.value;
+        gameSong.volume = volumen;
+        scoreSound.volume = volumen;
+        PlayerPrefs.SetFloat("musicVolume", volumen);
+
+    }
+
+    public void loadVolume()
+    {
+        musicSlider.value= PlayerPrefs.GetFloat("musicVolume");
+        setMusicVolume();
     }
 }
